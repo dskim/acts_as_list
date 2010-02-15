@@ -64,7 +64,10 @@ module ActiveRecord
             #{scope_condition_method}
 
             before_destroy :remove_from_list
-            before_create  :add_to_list_bottom
+				before_create  do |item|
+					# adding the record to the bottom of the list if no POSITION specified
+					item.send(:add_to_list_bottom) unless item.send(item.position_column.to_sym)
+				end
           EOV
         end
       end
