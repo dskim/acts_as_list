@@ -69,10 +69,10 @@ module ActiveRecord
             #{scope_condition_method}
 
             before_destroy :decrement_positions_on_lower_items
-				    before_create  do |item|
-					    # adding the record to the bottom of the list if no POSITION specified
-					    item.send(:add_to_list_bottom) unless item.send(item.position_column.to_sym)
-				    end
+            before_create  do |item|
+              # adding the record to the bottom of the list if no POSITION specified
+              item.send(:add_to_list_bottom) unless item.send(item.position_column.to_sym)
+            end
           EOV
         end
       end
